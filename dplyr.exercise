@@ -15,3 +15,14 @@ mtcars %>% mutate(sqrtQSEC = sqrt(qsec)) %>% head(5)
 mtcars %>% mutate(sqrtMPG = sqrt(mpg),logMPG = log(mpg)) %>% 
   select(mpg, sqrtMPG, logMPG, everything())
 
+
+install.packages("readr") install.packages("modelr") install.packages("randomForest") install.packages("ggplot2")   library(readr) library(modelr) library(randomForest) library(ggplot2) 
+data(diamonds)diamondsdiamonds %>% dim()diamonds %>% names()
+
+diamtrain <- diamonds %>% sample_frac(0.30)diamtest <- diamonds %>% sample_frac(0.10)diamtrain %>% dim()diamtest %>% dim()
+pricemodel <- randomForest(price  ~ . , data = diamtrain)
+pricemodel2 <- lm(price  ~ . , data = diamtrain)pricemodelpricemodel2
+rmse(pricemodel2,diamtrain)rmse(pricemodel2,diamtest)
+mae(pricemodel2,diamtrain)mae(pricemodel2,diamtest)
+rsquare(pricemodel2,diamtrain)rsquare(pricemodel2,diamtest)
+
